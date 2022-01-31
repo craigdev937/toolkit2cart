@@ -1,10 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../global/Hooks";
+import { fetchAll } from "../global/ProdSlice";
 
 export const Products = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    const { loading, error, products } = 
+    useAppSelector((state) => state.products);
+
+    React.useEffect(() => {
+        dispatch(fetchAll());
+    }, [dispatch]);
+
     return (
         <React.Fragment>
-            <h1>Products</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque eaque incidunt doloribus nobis, deleniti hic doloremque aperiam culpa veritatis labore fugit sit porro nesciunt corrupti suscipit qui facere ipsam provident?</p>
+            {error ? (
+                <h1>Error ...</h1>
+            ) : loading ? (
+                <h1>Loading...</h1>
+            ) : (
+                <aside>
+                    {products.map((product) => (
+                        <main key={product.id}>
+                            <h3>{product.title}</h3>
+                            <img 
+                                src={product.image} 
+                                alt={product.title} 
+                                style={{height: "200px", 
+                                    width: "auto"}}
+                            />
+                        </main>
+                    ))}
+                </aside>
+            )}
         </React.Fragment>
     );
 };
