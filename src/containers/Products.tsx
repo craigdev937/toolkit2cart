@@ -2,24 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../global/Hooks";
 import { fetchAll } from "../global/ProdSlice";
+import { ProdContainer, Header } from "./ProdStyle";
 
 export const Products = (): JSX.Element => {
     const dispatch = useAppDispatch();
-    const { loading, error, products } = 
+    const { error, loading, products } = 
     useAppSelector((state) => state.products);
-
     React.useEffect(() => {
         dispatch(fetchAll());
     }, [dispatch]);
 
     return (
         <React.Fragment>
+            <Header><Link to="/cart">Cart</Link></Header>
             {error ? (
                 <h1>Error ...</h1>
             ) : loading ? (
                 <h1>Loading...</h1>
             ) : (
-                <aside>
+                <ProdContainer>
                     {products.map((product) => (
                         <main key={product.id}>
                             <h3>{product.title}</h3>
@@ -31,7 +32,7 @@ export const Products = (): JSX.Element => {
                             />
                         </main>
                     ))}
-                </aside>
+                </ProdContainer>
             )}
         </React.Fragment>
     );

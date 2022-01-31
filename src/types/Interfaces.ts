@@ -17,5 +17,16 @@ export interface PState {
     error: null
 };
 
+export interface ICart extends IProduct {
+    quantity: number,
+};
+
+export interface CState {
+    products: ICart[],
+    totalPrice: number
+};
+
+
+
 
 
