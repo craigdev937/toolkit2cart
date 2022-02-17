@@ -8,7 +8,7 @@ const initialState: CState = {
 
 const CartSlice = createSlice({
     name: "cart",
-    initialState,
+    initialState: initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<ICart>) => {
             const selectedProduct = action.payload;
@@ -21,6 +21,20 @@ const CartSlice = createSlice({
             };
             state.totalPrice += Math.round(
                 selectedProduct.price * 100) / 100;
+        },
+        removeFromCart: (state, action: PayloadAction<string>) => {
+            const selectedProductId = action.payload;
+            const productIndex = state.products.findIndex(
+                (product) => product.id === selectedProductId);
+            state.totalPrice = (
+                state.totalPrice * 100 
+                - state.products[productIndex].price * 100) 
+                / 100;
+            if (state.products[productIndex].quantity > 1) {
+                state.products[productIndex].quantity--;
+            } else {
+                state.products.splice(productIndex, 1);
+            }
         },
         clearCart: (state) => {
             state.products = [],

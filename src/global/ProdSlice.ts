@@ -19,17 +19,17 @@ const initialState: PState = {
 
 const ProdSlice = createSlice({
     name: "products",
-    initialState,
+    initialState: initialState,
     reducers: {},
     extraReducers: {
         [fetchAll.rejected.toString()]: (state, action) => {
             state.loading = false,
             state.error = action.payload
         },
-        [fetchAll.pending.toString()]: (state, action) => {
+        [fetchAll.pending.toString()]: (state) => {
             state.loading = true
         },
-        [fetchAll.fulfilled.toString()]: 
+        [fetchAll.fulfilled.type]: 
         (state, action: PayloadAction<IProduct[]>) => {
             state.loading = false,
             state.products = [...action.payload]
