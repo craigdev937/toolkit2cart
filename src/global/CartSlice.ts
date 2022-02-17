@@ -22,7 +22,7 @@ const CartSlice = createSlice({
             state.totalPrice += Math.round(
                 selectedProduct.price * 100) / 100;
         },
-        removeFromCart: (state, action: PayloadAction<string>) => {
+        removeFromCart: (state, action: PayloadAction<number>) => {
             const selectedProductId = action.payload;
             const productIndex = state.products.findIndex(
                 (product) => product.id === selectedProductId);
@@ -43,6 +43,8 @@ const CartSlice = createSlice({
     }
 });
 
+export const { addToCart, removeFromCart, 
+    clearCart } = CartSlice.actions;
 export const CartReducer = CartSlice.reducer;
 
 

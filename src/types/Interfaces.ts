@@ -1,13 +1,20 @@
 export interface IProduct {
-    id: string,
-    name: string,
-    price: number
+    id: number,
+    title: string,
+    price: number,
+    description: string,
+    category: string,    
+    image: string,
+    rating: {
+        rate: number,
+        count: number
+    }
 };
 
 export interface PState {
     products: IProduct[],
     loading: boolean,
-    error: null
+    error: string | null
 };
 
 export interface ICart extends IProduct {

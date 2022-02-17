@@ -8,13 +8,19 @@ export const Products = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const { error, loading, products } = 
     useAppSelector((state) => state.products);
+
+    const cart = useAppSelector((state) => state.cart);
+
     React.useEffect(() => {
         dispatch(fetchAll());
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            <Header><Link to="/cart">Cart</Link></Header>
+            <Header>
+                <Link to="/cart">Cart</Link>
+                <span>{cart.products.length} items</span>
+            </Header>
             {error ? (
                 <h1>Error ...</h1>
             ) : loading ? (
