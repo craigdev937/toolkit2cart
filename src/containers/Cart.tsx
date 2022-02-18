@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../global/Hooks";
 import { Container, TitleContainer } from "./CartStyle";
 import { clearCart } from "../global/CartSlice";
 import { ProdContainer } from "./ProdStyle";
+import { PCard } from "../common/PCard";
 
 export const Cart = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ export const Cart = (): JSX.Element => {
             <ProdContainer>
                 {products.map((product) => (
                     <main key={product.id}>
-                        product={product}
+                        <PCard key={product.id} product={product} />
                     </main>
                 ))}
                 <h4>Total: $ {totalPrice}</h4>
