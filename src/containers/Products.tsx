@@ -22,22 +22,15 @@ export const Products = (): JSX.Element => {
                 <Link to="/cart">Cart</Link>
                 <span>{cart.products.length} items</span>
             </Header>
-            {error ? (
-                <h1>Error ...</h1>
-            ) : loading ? (
-                <h1>Loading...</h1>
+            {loading ? (
+                <h1>Loading ...</h1>
+            ) : error ? (
+                <h1>Error...</h1>
             ) : (
                 <ProdContainer>
                     {products.map((product) => (
                         <main key={product.id}>
                             <PCard key={product.id} product={product} />
-                            {/* <h3>{product.title}</h3>
-                            <img 
-                                src={product.image} 
-                                alt={product.title} 
-                                style={{height: "200px", 
-                                    width: "auto"}}
-                            /> */}
                         </main>
                     ))}
                 </ProdContainer>

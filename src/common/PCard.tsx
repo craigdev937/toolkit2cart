@@ -40,6 +40,12 @@ export const PCard =
         <PCardContainer>
             <h3>{product.title}</h3>
             <h3>Price {product.price}</h3>
+            <img 
+                src={product.image} 
+                alt={product.title} 
+                style={{height: "250px", 
+                    width: "auto"}}
+            />
             {quantity ? (
                 <Quantity 
                     onPlusClick={() => handleAdd(product)}
