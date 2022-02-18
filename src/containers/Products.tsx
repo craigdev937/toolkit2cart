@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../global/Hooks";
 import { fetchAll } from "../global/ProdSlice";
 import { ProdContainer, Header } from "./ProdStyle";
+import { PCard } from "../common/PCard";
 
 export const Products = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -29,13 +30,14 @@ export const Products = (): JSX.Element => {
                 <ProdContainer>
                     {products.map((product) => (
                         <main key={product.id}>
-                            <h3>{product.title}</h3>
+                            <PCard key={product.id} product={product} />
+                            {/* <h3>{product.title}</h3>
                             <img 
                                 src={product.image} 
                                 alt={product.title} 
                                 style={{height: "200px", 
                                     width: "auto"}}
-                            />
+                            /> */}
                         </main>
                     ))}
                 </ProdContainer>

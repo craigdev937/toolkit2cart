@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "./Button";
 import { useAppSelector, useAppDispatch } from "../global/Hooks";
-import { IProduct, ICart } from "../types/Interfaces";
+import { IProduct } from "../types/Interfaces";
 import { addToCart, removeFromCart } from "../global/CartSlice";
 import { PCardContainer } from "./PCardStyles";
 import { Quantity } from "./Quantity";
 
 interface Props {
-    product: ICart
+    product: IProduct
 };
 
 export const PCard = 
@@ -28,7 +28,7 @@ export const PCard =
         setQuantity(getProductQuantity(product.id));
     }, [product, products]);
 
-    const handleAdd = (product: ICart) => {
+    const handleAdd = (product: IProduct) => {
         dispatch(addToCart(product));
     };
 
